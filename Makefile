@@ -1,5 +1,5 @@
 # application meta info
-NAME := taifu
+NAME := chio
 VERSION= 0.0.1
 REVISION := $(shell git rev-parse --short HEAD)
 BUILDDATE := $(shell date '+%Y/%m/%d %H:%M:%S %Z')
