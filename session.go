@@ -25,17 +25,21 @@ func Session() *runningSession {
 	return instance
 }
 
+func getClient() *ssh.ClientConfig {
+	return nil
+}
+
 func createConnection() *ssh.Client {
 	clientConfig := &ssh.ClientConfig{
-		User: "", // User
+		User: "root", // User
 		Auth: []ssh.AuthMethod{
-			ssh.Password(""), // Pass or Key pem file
+			ssh.Password("uzabase"), // Pass or Key pem file
 		},
 		Timeout:         100 * time.Second,
 		HostKeyCallback: ssh.InsecureIgnoreHostKey(),
 	}
 
-	endpoint := fmt.Sprintf("%s:%d", "Host", "Port")
+	endpoint := fmt.Sprintf("%s:%d", "speranza-dev.uzabase.lan", 22)
 	conn, err := ssh.Dial("tcp", endpoint, clientConfig)
 	if err != nil {
 		panic(fmt.Sprintf("Error on create connection to %v : %v", endpoint, err))
@@ -65,3 +69,7 @@ func (r *runningSession) Run(command string) error {
 	return nil
 }
 
+func main() {
+	newSession := Session()
+	newSession.Run("pacman")
+}
