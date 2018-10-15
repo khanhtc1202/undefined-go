@@ -1,5 +1,5 @@
 # application meta info
-NAME := chio
+NAME := taifu
 VERSION= 0.0.1
 REVISION := $(shell git rev-parse --short HEAD)
 BUILDDATE := $(shell date '+%Y/%m/%d %H:%M:%S %Z')
@@ -29,7 +29,3 @@ test-%:
 
 update:
 	dep ensure -update
-
-# publicing
-deploy:
-	mv ./bin/* ./public/
