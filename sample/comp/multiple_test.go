@@ -18,6 +18,12 @@ func BenchmarkNonBufferChanGoRoutine(b *testing.B) {
 	}
 }
 
+func BenchmarkBufferChanGoRoutine(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		BufferChanGoRoutine(randomPairs())
+	}
+}
+
 func randomPairs() []MultiplePair {
 	var pairs []MultiplePair
 	for i := 0; i < 1000; i++ {
