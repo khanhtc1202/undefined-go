@@ -34,6 +34,14 @@ func (o *Organism) calcFitness(target []byte) {
 	o.Fitness = float64(score) / float64(len(o.DNA))
 }
 
+func (o *Organism) mutate() {
+	for i := 0; i < len(o.DNA); i++ {
+		if rand.Float64() < MutationRate {
+			o.DNA[i] = byte(rand.Intn(95) + 32)
+		}
+	}
+}
+
 func createOrganism(target []byte) (organism Organism) {
 	ba := make([]byte, len(target))
 	for i := 0; i < len(target); i++ {
@@ -82,14 +90,6 @@ func crossover(d1 Organism, d2 Organism) Organism {
 
 	}
 	return child
-}
-
-func (d *Organism) mutate() {
-	for i := 0; i < len(d.DNA); i++ {
-		if rand.Float64() < MutationRate {
-			d.DNA[i] = byte(rand.Intn(95) + 32)
-		}
-	}
 }
 
 func naturalSelection(pool []Organism, population []Organism, target []byte) []Organism {
