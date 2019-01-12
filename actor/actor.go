@@ -1,9 +1,9 @@
-package reverie
+package actor
 
 type ActorBehavior interface {
 	Name() string
 	Close()
-} 
+}
 
 type Actor struct {
 }
