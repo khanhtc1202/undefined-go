@@ -91,7 +91,7 @@ func 問題8() (val int) {
 	defer func() {
 		val = 5
 		if err := recover(); err == nil {
-			val++
+			val++ // not go here because of panic was revoked
 		}
 		val++
 	}()
