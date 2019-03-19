@@ -29,7 +29,6 @@ func mul(ele1, ele2 string, b int) string {
 
 	for i := len(ele1BaseB) - 1; i >= 0; i-- {
 		for j := len(ele2BaseB) - 1; j >= 0; j-- {
-			fmt.Printf("mul ele1[%d] ele2[%d]\n", i, j)
 			mulUnit := ele1BaseB[i]*ele2BaseB[j] + flag + result[up]
 			flag = 0
 			if mulUnit >= base {
@@ -52,6 +51,7 @@ func mul(ele1, ele2 string, b int) string {
 
 func convertBack(num []int64, base int) string {
 	var result string
+	fmt.Println(num)
 	for i := len(num) - 1; i >= 0; i-- {
 		curUnit := fmt.Sprintf("%d", num[i])
 		if i == len(num)-1 {
