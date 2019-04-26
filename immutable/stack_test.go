@@ -12,6 +12,7 @@ func TestStack_Int(t *testing.T) {
 	assert.Nil(t, s.Peek())
 	s1 := s.Push(1)
 	assert.Nil(t, s.Peek())
+	assert.False(t, s1.IsEmpty())
 	assert.Equal(t, 1, s1.Peek())
 }
 
