@@ -97,7 +97,7 @@ func cloneBookWorker(id int, linksQueue chan Link, wg *sync.WaitGroup) {
 	}
 }
 
-func linkCollector(wg *sync.WaitGroup, linksQueue chan Link) {
+func linkCollector(linksQueue chan Link) {
 
 	seedUrl := "https://sachvui.com/the-loai/tat-ca.html"
 
@@ -126,6 +126,6 @@ func main() {
 		go cloneBookWorker(i, linksQueue, &wg)
 	}
 
-	go linkCollector(&wg, linksQueue)
+	go linkCollector(linksQueue)
 	wg.Wait()
 }
