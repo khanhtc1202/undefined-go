@@ -42,10 +42,28 @@ func (m *Member) Sleep() {
 	time.Sleep(time.Duration(m.sleepTime) * time.Second)
 }
 
+type HaveLockMember struct {
+	lock      sync.Mutex
+	sleepTime int
+}
+
+func (m *HaveLockMember) Sleep() {
+	m.lock.Lock()
+	time.Sleep(time.Duration(m.sleepTime) * time.Second)
+	m.lock.Unlock()
+}
+
 func main() {
 	member := Member{sleepTime: 1}
 	container := Container{fork: 4, member: &member}
 
-	println("Go to sleep multi")
+	println("Go to sleep multi without lock")
 	container.SleepMulti()
+
+	println("------------")
+	haveLockMember := HaveLockMember{sleepTime: 1}
+	container1 := Container{fork: 4, member: &haveLockMember}
+
+	println("Go to sleep with lock")
+	container1.SleepMulti()
 }
