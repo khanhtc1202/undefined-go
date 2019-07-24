@@ -123,10 +123,19 @@ func TestWithValue(t *testing.T) {
 	}
 
 	for _, tt := range tc {
-		ctx := WithValue(Background(), tt.key, tt.val)
+		t.Run("", func(t *testing.T) {
+			defer func() {
+				r := recover()
+				if (r != nil) != tt.shouldPanic {
+					t.Errorf("should panic")
+				}
+			}()
 
-		if tt.valRet != ctx.Value(tt.keyRet) {
-			t.Errorf("should receive value %v, got %v", tt.valRet, ctx.Value(tt.keyRet))
-		}
+			ctx := WithValue(Background(), tt.key, tt.val)
+
+			if tt.valRet != ctx.Value(tt.keyRet) {
+				t.Errorf("should receive value %v, got %v", tt.valRet, ctx.Value(tt.keyRet))
+			}
+		})
 	}
 }
