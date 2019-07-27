@@ -1,13 +1,12 @@
 package sshsession
 
 import (
-	"golang.org/x/crypto/ssh"
-	"github.com/pkg/errors"
-	"os"
 	"fmt"
+	"github.com/pkg/errors"
+	"golang.org/x/crypto/ssh"
+	"os"
 	"time"
 )
-
 
 type runningSession struct {
 	remoteSession *ssh.Session
