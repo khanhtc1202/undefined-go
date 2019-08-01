@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	_ "net/http/pprof"
 )
 
 type tracker struct {
@@ -33,10 +34,14 @@ func trackRequests(reqs <-chan *http.Request) {
 	for {
 		select {
 		case r := <-reqs:
-			tracker := &tracker{r}
-			defer tracker.Close()
-
-			tracker.Track()
+			trackRequest(r)
 		}
 	}
+}
+
+func trackRequest(r *http.Request) {
+	tracker := &tracker{r}
+	defer tracker.Close()
+
+	tracker.Track()
 }
