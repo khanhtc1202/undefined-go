@@ -1,5 +1,7 @@
 package main
 
 func main() {
-	println("Sample")
+	a, b := 1, 2
+	a, b = b, a
+	println(a, b)
 }
