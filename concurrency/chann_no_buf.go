@@ -9,6 +9,8 @@ func main() {
 		}
     }()
     <-done
+    // below `close` does not have meaning here, since for loop still run inside forked 
+    // routine but program will stop right after println statment be executed
     close(done)
 }
 
