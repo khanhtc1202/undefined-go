@@ -19,5 +19,7 @@ func main() {
 	println("size of a = ", unsafe.Sizeof(a)) // output: 24 | go runtime give memory by block and it's size 8 bytes for each
 	var b B
 	println("size of b = ", unsafe.Sizeof(b)) // output: 16 | go runtime will fill val to data block sequently till it full :)
+	c := B{}
+	println("size of b = ", unsafe.Sizeof(c)) // output: 16 | go runtime will fill val to data block sequently till it full :)
 }
 
