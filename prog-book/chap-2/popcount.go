@@ -19,10 +19,18 @@ func PopCount(x uint64) int {
 		pc[byte(x>>(7*8))])
 }
 
+func PopCountDel(x uint64) int {
+	k := 0
+	for x!=0 {
+		x, k = x&(x-1), k+1
+	}
+	return k
+}
+
 func main() {
-	println(PopCount(8))
-	println(PopCount(100))
-	println(PopCount(256))
-	println(PopCount(34))
-	println(PopCount(300))
+	println(PopCount(8) == PopCountDel(8))
+	println(PopCount(100) == PopCountDel(100))
+	println(PopCount(256) == PopCountDel(256))
+	println(PopCount(34) == PopCountDel(34))
+	println(PopCount(300) == PopCountDel(300))
 }
