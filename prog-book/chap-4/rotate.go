@@ -40,10 +40,22 @@ func rotateRightNTimes(s []int, n int) {
 	reverse(s[n:])
 }
 
+func rotateAllocate(s []int, r int) []int {
+	n := len(s)
+	rotated := make([]int, n)
+	for i := range s {
+		// copy the element from old slice to the new one in rotated index
+		rotated[i] = s[(i+r)%n]
+	}
+	return rotated
+}
+
 func main() {
 	s := []int{0, 1, 2, 3, 4, 5}
 	rotateLeftNTimes(s, 7)
 	fmt.Println("Rotate left 7 time(s):", s)
 	rotateRightNTimes(s, 1)
 	fmt.Println("Rotate right 1 time(s):", s)
+	ro := rotateAllocate(s, 2)
+	fmt.Println("Rotate allocated 2 time(s):", ro)
 }
